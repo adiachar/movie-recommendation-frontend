@@ -26,10 +26,7 @@ export default function Cinemate() {
 
     const getRecommendations = async (movie, count) => {
         try {
-            const response = await axios.post('http://127.0.0.1:5000/recommend', {
-                movie: movie,
-                count: count
-            });
+            const response = await axios.get(`https://cinemate-wiqc.onrender.com/recommend?m=${movie}&c=${count}`);
             setRecommendedMovies(response.data.recommended_movies);
             setLoading(false);
             setMessage("");
@@ -135,15 +132,15 @@ function MovieInfo({movieInfo}) {
                         <ul className='w-12/12 list-none flex overflow-x-auto'>
                             {movieInfo.genres.map((genre) => 
                             <li className='px-4 py-1 m-1 text-xs bg-neutral-950 flex justify-center items-center'>
-                                <p>{genre}</p>
+                                <p>{genre.name}</p>
                             </li>)}
                         </ul>
                     </div>
                     <div className='py-3 border-b-2 border-neutral-950'>
                         <h1 className='font-semibold'>Cast: </h1>
                         <ul className='w-12/12 list-none flex overflow-x-auto'>
-                            {movieInfo.cast.map((c) => 
-                            <li className='px-4 py-1 m-1 text-xs bg-neutral-950 flex justify-center items-center'>
+                            {movieInfo.cast.map((c, idx) => 
+                            <li key={idx} className='px-4 py-1 m-1 text-xs bg-neutral-950 flex justify-center items-center'>
                                 <p>{c}</p>
                             </li>)}
                         </ul>
@@ -151,18 +148,17 @@ function MovieInfo({movieInfo}) {
                     <div className='py-3 border-b-2 border-neutral-950'>
                         <h1 className='font-semibold'>Director: </h1>
                         <ul className='w-12/12 list-none flex overflow-x-auto'>
-                            {movieInfo.crew.map((c) => 
                             <li className='px-4 py-1 m-1 text-xs bg-neutral-950 flex justify-center items-center'>
-                                <p>{c}</p>
-                            </li>)}
+                                <p>{movieInfo.crew}</p>
+                            </li>
                         </ul>
                     </div>
                     <div className='py-3 border-b-2 border-neutral-950'>
                         <h1 className='font-semibold'>Keywords: </h1>
                         <ul className='w-12/12 list-none flex overflow-x-auto'>
-                            {movieInfo.keywords.map((c) => 
-                            <li className='px-4 py-1 m-1 text-xs bg-neutral-950 flex justify-center items-center'>
-                                <p>{c}</p>
+                            {movieInfo.keywords.map((obj, idx) => 
+                            <li key={idx} className='px-4 py-1 m-1 text-xs bg-neutral-950 flex justify-center items-center'>
+                                <p>{obj.name}</p>
                             </li>)}
                         </ul>
                     </div>
