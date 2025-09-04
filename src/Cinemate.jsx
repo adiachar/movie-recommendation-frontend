@@ -26,7 +26,7 @@ export default function Cinemate() {
 
     const getRecommendations = async (movie, count) => {
         try {
-            const response = await axios.get(`https://cinemate-wiqc.onrender.com/recommend?m=${movie}&c=${count}`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/recommend_movies?m=${movie}&c=${count}`);
             setRecommendedMovies(response.data.recommended_movies);
             setLoading(false);
             setMessage("");
@@ -122,9 +122,9 @@ function MovieInfo({movieInfo}) {
                         </div>
                     </div>
                     <div>
-                        <h1 className='font-semibold'>Rating: </h1>
+                        <h1 className='font-semibold'>Year of Publication: </h1>
                         <div className='px-4 py-1 m-1 text-xs bg-neutral-950 flex justify-center items-center'>
-                            <p>{movieInfo.vote_average}/10</p>
+                            <p>{movieInfo.yearOfPublication}/10</p>
                         </div>
                     </div>
                     <div className='py-3 border-b-2 border-neutral-950'>
