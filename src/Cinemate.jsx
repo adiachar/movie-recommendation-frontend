@@ -62,7 +62,7 @@ export default function Cinemate() {
            <div className='h-2/12 w-full flex flex-col justify-center items-center'>
                 <p className='mb-2 text-sm text-neutral-400'>{message ? message :"Search a movie you like"}</p>
                 <div className='h-9 w-11/12 lg:w-2/6 md:w-2/6 border-2 border-gray-300 flex justify-between items-center'>
-                    <input type="text" className='outline-0 pl-3 text-white text-sm' placeholder='eg: avatar' value={movie} onChange={e => setMovie(e.target.value)}/>
+                    <input type="text" className='w-10/12 outline-0 pl-3 text-white text-sm' placeholder='eg: avatar' value={movie} onChange={e => setMovie(e.target.value)}/>
                     {!loading ? 
                         <IconButton 
                             onClick={() => recommendMovies()} 
