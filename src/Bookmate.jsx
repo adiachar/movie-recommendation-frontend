@@ -13,7 +13,7 @@ export default function Bookmate() {
     const [book, setBook] = useState("");
     const [bookInfo, setBookInfo] = useState({});
     const [seeInfo, setSeeInfo] = useState(false);
-    const [count, setCount] = useState(5);
+    const [count, setCount] = useState(10);
     const [popularBooks, setPopularBooks] = useState([]);
 
 
@@ -63,7 +63,7 @@ export default function Bookmate() {
                 {recommendedBooks?.length > 0 ? 
                 recommendedBooks.map((book, idx) => <BookCard key={idx} book={book} imageUrl={book.imageUrl} loading={loading} setSeeInfo={setSeeInfo} setBookInfo={setBookInfo}/>) :
                 popularBooks.length > 0 ? popularBooks.map((book, idx) => <BookCard key={idx} book={book} setBookInfo={setBookInfo} setSeeInfo={setSeeInfo} imageUrl={book.imageUrl} loading={loading}/>) :
-                Array.from({length: 5}).map((_, idx) => <BookCard key={idx} book={null} setBookInfo={setBookInfo} setSeeInfo={setSeeInfo} imageUrl={book.imageUrl} loading={loading}/>)}
+                Array.from({length: 10}).map((_, idx) => <BookCard key={idx} book={null} setBookInfo={setBookInfo} setSeeInfo={setSeeInfo} imageUrl={book.imageUrl} loading={loading}/>)}
            </div> : <BookInfo bookInfo={bookInfo}/>}
            <div className='h-2/12 w-full flex flex-col justify-center items-center'>
                 <p className='mb-2 text-sm text-neutral-400'>{message ? message :"Search a Book you like"}</p>
